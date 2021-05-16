@@ -53,7 +53,7 @@ def make_j(node):
 
 #   #
 # Search for local maximum and does some random choices
-def Learn(graph, dataset, SAindex):
+def Learn(graph, dataset, LVindex):
     current = Score( graph , dataset)
     score = 0
     run = True
@@ -93,18 +93,18 @@ def Learn(graph, dataset, SAindex):
         #       #       #       #       #       #       #       #   END FOR
 
         #   #
-        # San Andreas Step
+        # Las Vegas Step
 
-        if random.randint(0, 100) < SAindex:
+        if random.randint(0, 100) < SVindex:
             run = True
-            gSA = copy.deepcopy(graph)
+            gLV = copy.deepcopy(graph)
             if bool(random.getrandbits(1)):
-                gSA.invertEdgeSA()
+                gLV.invertEdgeLV()
             else:
-                gSA.removeEdgeSA()
+                gLV.removeEdgeLV()
 
-            if not gSA.isCyclic():
-                graph = gSA
+            if not gLV.isCyclic():
+                graph = gLV
 
         #   #
         # Is there a better graph in G ? 
@@ -123,13 +123,13 @@ def Learn(graph, dataset, SAindex):
 
 #   #
 # Calls Learn several times on random generated DAGs to find best Learning 
-def bestLearn(graph, dataset, SAindex, iter):
+def bestLearn(graph, dataset, LVindex, iter):
     G = []
     S = []
     for i in range(iter):
         g = copy.deepcopy(graph)
         g.initDAG()
-        [gr, sc] = Learn(g, dataset, SAindex)
+        [gr, sc] = Learn(g, dataset, LVindex)
         G.append(gr)
         S.append(sc)
     return G[S.index(max(S))]
