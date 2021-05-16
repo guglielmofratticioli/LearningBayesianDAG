@@ -45,15 +45,15 @@ ha funzioni per il conteggio :
 
 Learning.py ha come funzioni :
 
-- alphaijk/alphaij : : priors nel learning , le ho considerate pseudocounts unitarie ( =1 )
+- alphaijk/alphaij -> priors nel learning , le ho considerate pseudocounts unitarie ( =1 )
 
-- make_j :: dato un nodo restituisce [ _list of cartesian product of fathers domines_ , _list of fathers's labels_ ]
+- make_j -> dato un nodo restituisce [ _list of cartesian product of fathers domines_ , _list of fathers's labels_ ]
 
-- Score : : è lo scoring secondo la formula di log Cooper/Herscoviz
+- Score -> è lo scoring secondo la formula di log Cooper/Herscoviz
 
     scorre per ogni nodo, chiama _makej()_ per generare la lista di combinazioni di padri su cui scorrere; a questo punto incrementa lo score secondo somma/sottrazione di log( Gamma()) secondo la formula. Calcola le priors con _alphaijjk()_ e conteggia il dataset con _Nijk()_
 
-- Learn : : si apprende secondo un Hill climbing della funzione di scoring
+- Learn -> si apprende secondo un Hill climbing della funzione di scoring
 
     inizialmente si genera in modo casuale un DAG con _initDAG()_ sui nodi del grafo , poi per ogni coppia di nodi si generano i 3 possibili grafi ottenuti da un add/invert/remove di un arco tra la coppia, a questo punto se i grafici ottenuti hanno modificato la VStructure vengono inseriti in una lista G = [].
 
@@ -63,9 +63,9 @@ Learning.py ha come funzioni :
 
     la ricerca termina quando nessun grafico in G risulta migliore del corrente
 
-- bestLearn : : ho aggiunto questa funzione per un bug
+- bestLearn -> ho aggiunto questa funzione per un bug
 
-    La ricerca si fermava  quasi subito  nel Learn (!! Possibile Funzione di scoringErrata !! )
+    La ricerca si fermava  quasi subito  nel Learn <span style = "color:red">(!! Possibile Funzione di scoringErrata !! )</span>
 
     Questa funzione chiama più volte _Learn()_ in modo da far partire più ricerche in DAG inizilizzati in modo diverso ... poi si seleziona il grafico migliore
 
