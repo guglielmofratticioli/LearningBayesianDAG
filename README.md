@@ -19,7 +19,7 @@ Graph.py ha come classi :
 
     - Invert/Remove Edge SA - > aggiunge/rimuove un arco casualmente che cambia la VStructure
 
-    - Add/Invert/Remove EDge -> dato un nodo ed un father aggiunge/inverte/rimuove arco se possibile
+    - Add/Invert/Remove Edge -> dato un nodo ed un father aggiunge/inverte/rimuove arco se possibile
 
     - initDAG -> connette i nodi nel graph in modo da formare un DAG casuale
 
