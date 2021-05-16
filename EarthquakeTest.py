@@ -99,7 +99,7 @@ Visualizer.printdot(actualEQGraph)
 Visualizer.printpng()
 
 input()
-learnt = bestLearn(EQGraph, datas, SAindex=99, iter=50)
+learnt = bestLearn(EQGraph, datas, LVindex=99, iter=50)
 
 print( " Score of the learnt Earthquake model  ")
 print(Score(learnt, rdatas))
