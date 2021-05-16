@@ -7,7 +7,7 @@ class Graph:
 
     #   #
     # Las Vegas invert/remove a random Edge that changes VStructure
-    def removeEdgeLA(self):
+    def removeEdgeLV(self):
         i = 0
         while i < len(self.nodes) and len(self.nodes[i].fathers) < 2:
             i += 1
@@ -18,7 +18,7 @@ class Graph:
                 node.fathers.remove(f)
                 f.sons.remove(node)
 
-    def invertEdgeLA(self):
+    def invertEdgeLV(self):
         i = 0
         while i < len(self.nodes) and len(self.nodes[i].fathers) < 2:
             i += 1
