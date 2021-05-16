@@ -21,7 +21,7 @@ Graph.py ha come classi :
 
     - Add/Invert/Remove EDge -> dato un nodo ed un father aggiunge/inverte/rimuove arco se possibile
 
-    - initDAG(-> connette i nodi nel graph in modo da formare un DAG casuale
+    - initDAG -> connette i nodi nel graph in modo da formare un DAG casuale
 
     - isCyclic -> controlla se un grafico ha cicli eseguendo una DFS sul grafo
 
