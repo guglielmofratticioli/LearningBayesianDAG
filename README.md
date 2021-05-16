@@ -65,7 +65,7 @@ Learning.py ha come funzioni :
 
 - bestLearn -> ho aggiunto questa funzione per un bug
 
-    La ricerca si fermava  quasi subito  nel Learn <span style = "color:red">(!! Possibile Funzione di scoringErrata !! )</span>
+    La ricerca si fermava  quasi subito  nel Learn **<span style = "color:red">(!! Possibile Funzione di scoringErrata !! )</span>**
 
     Questa funzione chiama più volte _Learn()_ in modo da far partire più ricerche in DAG inizilizzati in modo diverso ... poi si seleziona il grafico migliore
 
