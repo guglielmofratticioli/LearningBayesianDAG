@@ -17,7 +17,7 @@ Graph.py ha come classi :
 - Node : : ha una lista di nodi padri e nodi figli , tabella dei parametri , label numerica , nome
 - Graph : : ha una lista di nodi e varie funzioni di Utility
 
-    - Invert/Remove Edge SA - > aggiunge/rimuove un arco casualmente che cambia la VStructure
+    - Invert/Remove Edge LA - > aggiunge/rimuove un arco casualmente che cambia la VStructure
 
     - Add/Invert/Remove Edge -> dato un nodo ed un father aggiunge/inverte/rimuove arco se possibile
 
@@ -59,7 +59,7 @@ Learning.py ha come funzioni :
 
     Dopo aver scorso tutte le coppie si controlla se tra i grafi inseriti in G alcuni hanno Score maggiore, in quel caso si aggiorna il grafico corrente e si ripete il while
 
-    ho inserito uno step aleatorio ( San Andreas ) che chiama le funzioni remove/invert SA che modificano un arco casuale ( allo scopo di evitare minimi locali )
+    ho inserito uno step aleatorio ( Las Vegas ) che chiama le funzioni remove/invert LA che modificano un arco casuale ( allo scopo di evitare minimi locali )
 
     la ricerca termina quando nessun grafico in G risulta migliore del corrente
 
