@@ -39,7 +39,7 @@ Dataset.py ha come classi :
 
 ha funzioni per il conteggio :
 
-- Nijk : : restituisce il numero di esempi che hanno il nodo i = k dato j = [ [_a combination for i.fathers ] , [ labels of i.fathers_]]
+- Nijk -> restituisce il numero di esempi che hanno il nodo i = k dato j = [ [_a combination for i.fathers ] , [ labels of i.fathers_]]
 
 ## APPRENDERE IL GRAFICO
 
