@@ -6,8 +6,8 @@ class Graph:
         self.nodes = nodes
 
     #   #
-    # Las Vegas invert/remove a random Edge that changes VStructure
-    def removeEdgeLV(self):
+    # San Andreas invert/remove a random Edge that changes VStructure
+    def removeEdgeSA(self):
         i = 0
         while i < len(self.nodes) and len(self.nodes[i].fathers) < 2:
             i += 1
@@ -18,7 +18,7 @@ class Graph:
                 node.fathers.remove(f)
                 f.sons.remove(node)
 
-    def invertEdgeLV(self):
+    def invertEdgeSA(self):
         i = 0
         while i < len(self.nodes) and len(self.nodes[i].fathers) < 2:
             i += 1
@@ -59,7 +59,9 @@ class Graph:
         for n in self.nodes:
             random.shuffle(q)
             q.remove(n)
-            k = random.randint(0, len(q))
+            max = len(q)
+            if max > 3 : max = 3
+            k = random.randint(0, max)   # 3 sons max to have lighter graphs
             for i in range(k):
                 n.fathers.append(q[i])
                 q[i].sons.append(n)

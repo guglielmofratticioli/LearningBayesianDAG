@@ -13,16 +13,11 @@ def EQsampler(graph):
     JohnCall = graph.nodes[3]
     MaryCall = graph.nodes[4]
 
-    b = random.choices(population=[1, 0], weights=[Burglary.table.get(
-        'True'), 1 - Burglary.table.get('True')], k=1)
-    e = random.choices(population=[1, 0], weights=[Earthquake.table.get(
-        'True'), 1 - Earthquake.table.get('True')], k=1)
-    a = random.choices(population=[1, 0], weights=[Alarm.table.get(str(
-        b[0]) + ',' + str(e[0])), 1 - Alarm.table.get(str(b[0]) + ',' + str(e[0]))], k=1)
-    j = random.choices(population=[1, 0], weights=[JohnCall.table.get(
-        str(a[0])), 1 - JohnCall.table.get(str(a[0]))], k=1)
-    m = random.choices(population=[1, 0], weights=[MaryCall.table.get(
-        str(a[0])), 1 - MaryCall.table.get(str(a[0]))], k=1)
+    b = random.choices(population=[1, 0], weights=[Burglary.table.get('True'), 1 - Burglary.table.get('True')], k=1)
+    e = random.choices(population=[1, 0], weights=[Earthquake.table.get('True'), 1 - Earthquake.table.get('True')], k=1)
+    a = random.choices(population=[1, 0], weights=[Alarm.table.get(str(b[0]) + ',' + str(e[0])), 1 - Alarm.table.get(str(b[0]) + ',' + str(e[0]))], k=1)
+    j = random.choices(population=[1, 0], weights=[JohnCall.table.get(str(a[0])), 1 - JohnCall.table.get(str(a[0]))], k=1)
+    m = random.choices(population=[1, 0], weights=[MaryCall.table.get(str(a[0])), 1 - MaryCall.table.get(str(a[0]))], k=1)
 
     return [b[0], e[0], a[0], j[0], m[0]]
 
@@ -81,28 +76,28 @@ EQGraph = BuildEQGraph()
 actualEQGraph = actualEQGraph()
 
 examples = []
-actualexamples = []
+#actualexamples = []
 
 #   #
 # examples = rexamples  ( but references to different <Node> objects )
 for i in range(100):
     smp = EQsampler(EQGraph)
     examples.append(Example(EQGraph.nodes, smp ))
-    actualexamples.append(Example(actualEQGraph , smp ))
+#    actualexamples.append(Example(actualEQGraph , smp ))
 
 datas = Dataset(EQGraph.nodes, examples)
-rdatas = Dataset(actualEQGraph.nodes , actualexamples)
+#rdatas = Dataset(actualEQGraph.nodes , examples)
 
 print( " Score of the actual Earthquake model  ")
-print(Score(actualEQGraph, rdatas))
+print(Score(actualEQGraph, datas))
 Visualizer.printdot(actualEQGraph)
 Visualizer.printpng()
 
 input()
-learnt = bestLearn(EQGraph, datas, LVindex=99, iter=50)
+learnt = bestLearn(EQGraph, datas, SAindex=0, iter=1)
 
 print( " Score of the learnt Earthquake model  ")
-print(Score(learnt, rdatas))
+print(Score(learnt, datas))
 Visualizer.printdot(learnt)
 Visualizer.printpng()
 

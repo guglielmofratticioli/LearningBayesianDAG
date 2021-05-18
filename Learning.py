@@ -3,7 +3,7 @@ import math
 import Dataset
 import random
 import copy
-
+import Visualizer
 #   #
 # Dirichet Priors
 def alphaijk(i, j, k):
@@ -53,21 +53,27 @@ def make_j(node):
 
 #   #
 # Search for local maximum and does some random choices
-def Learn(graph, dataset, LVindex):
+def Learn(graph, dataset, SAindex):
     current = Score( graph , dataset)
     score = 0
     run = True
+    time = 0
     while(run):
+        time+=1
+        print(time)
+        print(current)
         run = False
         vstruct = graph.VStruct()
         G = []
         S = []
 
+        Visualizer.printdot(graph)
+        Visualizer.printpng()
+
         #   #
         # Relevant Actions added to list graph->G , score->S
-
         for i in range(len(graph.nodes)):
-            for j in range(len(graph.nodes)):
+            for j in range(i, len(graph.nodes)) :
                 if i != j:
                     g1 = copy.deepcopy(graph)
                     g2 = copy.deepcopy(graph)
@@ -79,7 +85,6 @@ def Learn(graph, dataset, LVindex):
 
                     #   #
                     # only changing-VStructure acyclic steps are relevant
-
                     if g1.VStruct() != vstruct and not g1.isCyclic():
                         S.append(Score(g1, dataset))
                         G.append(g1)
@@ -93,22 +98,20 @@ def Learn(graph, dataset, LVindex):
         #       #       #       #       #       #       #       #   END FOR
 
         #   #
-        # Las Vegas Step
-
-        if random.randint(0, 100) < SVindex:
+        # San Andreas Step
+        if random.randint(0, 100) < SAindex:
             run = True
-            gLV = copy.deepcopy(graph)
+            gSA = copy.deepcopy(graph)
             if bool(random.getrandbits(1)):
-                gLV.invertEdgeLV()
+                gSA.invertEdgeSA()
             else:
-                gLV.removeEdgeLV()
+                gSA.removeEdgeSA()
 
-            if not gLV.isCyclic():
-                graph = gLV
+            if not gSA.isCyclic():
+                graph = gSA
 
         #   #
         # Is there a better graph in G ? 
-        current = Score( graph , dataset)
         if len(S) > 0:
             score = Score(G[S.index(max(S))], dataset)
             if  score > current :
@@ -123,13 +126,15 @@ def Learn(graph, dataset, LVindex):
 
 #   #
 # Calls Learn several times on random generated DAGs to find best Learning 
-def bestLearn(graph, dataset, LVindex, iter):
+def bestLearn(graph, dataset, SAindex, iter):
     G = []
     S = []
     for i in range(iter):
         g = copy.deepcopy(graph)
         g.initDAG()
-        [gr, sc] = Learn(g, dataset, LVindex)
+        Visualizer.printdot(g)
+        Visualizer.printpng()
+        [gr, sc] = Learn(g, dataset, SAindex)
         G.append(gr)
         S.append(sc)
     return G[S.index(max(S))]

@@ -1,5 +1,5 @@
 from Graph import Graph, Node
-from Dataset import Dataset, Example, Nijk
+from Dataset import Dataset, Example, Nijk , Nij
 import Visualizer
 import Learning
 #   #
@@ -26,23 +26,28 @@ ex1 = Example(nodes, [0, 2, 1, 2, 2])
 ex2 = Example(nodes, [0, 2, 1, 0, 1])
 ex3 = Example(nodes, [1, 2, 1, 1, 2])
 ex4 = Example(nodes, [0, 2, 1, 3, 2])
-ex5 = Example(nodes, [1, 2, 0, 0, 2])  #Test2
-ex6 = Example(nodes, [0, 0, 1, 1, 2])  #Test1
+ex5 = Example(nodes, [1, 2, 0, 0, 2])  # Test2
+ex6 = Example(nodes, [0, 0, 1, 1, 2])  # Test1
 ex7 = Example(nodes, [0, 1, 0, 1, 2])
-ex8 = Example(nodes, [0, 0, 1, 1, 3])  #Test1
+ex8 = Example(nodes, [0, 0, 1, 1, 3])  # Test1
 
 
 examples = [ex1, ex2, ex3, ex4, ex5, ex6, ex7, ex8]
-datas = Dataset(nodes,examples)
+datas = Dataset(nodes, examples)
 
-# How many examples in which n2 fathers -> [ n1 , n4 ] = [0 , 1] while n2 = 0 
-print(Nijk(datas , i=n2, j=[[0, 1], [1, 4]], k=0))  #  should be 2 
+# How many examples in which n2 fathers -> [ n1 , n4 ] = [0 , 1] while n2 = 0
+print(Nijk(datas, i=n2, j=[[0, 1], [1, 4]], k=0))  # should be 2
 
 
 # How many examples in which n5 fathers -> [ n4 ] = [ 0 ] while n5 = 2
-print(Nijk(datas , i=n5, j=[[0], [4]], k=2))       #should be 1 
+print(Nijk(datas, i=n5, j=[[0], [4]], k=2))  # should be 1
 
 
-# make_j should return a 2D list :  [ [cartesian_prod_of_fathers_domine ] , [ list_of_fathers ] ] 
-print( Learning.make_j(n2)[0] , Learning.make_j(n2)[1] )
+# make_j should return a 2D list :  [ [cartesian_prod_of_fathers_domine ] , [ list_of_fathers ] ]
+print(Learning.make_j(n2)[0], Learning.make_j(n2)[1])
 
+# case with no fathers 
+print(Nijk(datas, i=n4, j=[[], []], k=1))  # should be 4
+
+# case with no fathers 
+print(Nij(datas, i=n4, j=[[], []]))  # should be 8
