@@ -3,7 +3,7 @@ from Graph import Node, Graph
 import Visualizer
 import random
 from Dataset import Dataset, Example
-from Learning import Score , bestLearn
+from Learning import Score , Learn , QuickLearn
 
 LOW2 = 0    
 NORMAL2 = 1
@@ -662,7 +662,7 @@ connectALMFathers(actual)
 graph = buildALMGraph()
 examples = [] 
 
-for i in range(50) : 
+for i in range(100) : 
    e = ALMSampler(graph)
    examples.append(e)
    print(e.values)
@@ -673,8 +673,9 @@ print("Score of the actual Alarm Model")
 print(Score(actual, datas))
 Visualizer.printdot(actual)
 Visualizer.printpng()
-learnt = bestLearn(graph, datas, SAindex=0, iter=1)
-print( " Score of the learnt Earthquake model  ")
-print(Score(learnt, datas))
-Visualizer.printdot(learnt)
+learnt = Learn(graph, datas)
+#learnt = QuickLearn(graph, datas)
+print( " Score of the learnt Alarm model  ")
+print(learnt[1])
+Visualizer.printdot(learnt[0])
 Visualizer.printpng()

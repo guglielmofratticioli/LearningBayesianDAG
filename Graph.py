@@ -6,31 +6,6 @@ class Graph:
         self.nodes = nodes
 
     #   #
-    # San Andreas invert/remove a random Edge that changes VStructure
-    def removeEdgeSA(self):
-        i = 0
-        while i < len(self.nodes) and len(self.nodes[i].fathers) < 2:
-            i += 1
-        if i < len(self.nodes) and len(self.nodes[i].fathers) >= 2:
-            node = self.nodes[i]
-            f = random.choice(node.fathers)
-            if len(node.fathers) > 1 and len(f.sons) > 1:
-                node.fathers.remove(f)
-                f.sons.remove(node)
-
-    def invertEdgeSA(self):
-        i = 0
-        while i < len(self.nodes) and len(self.nodes[i].fathers) < 2:
-            i += 1
-        if i < len(self.nodes) and len(self.nodes[i].fathers) >= 2:
-            node = self.nodes[i]
-            f = random.choice(node.fathers)
-            node.sons.append(f)
-            node.fathers.remove(f)
-            f.fathers.append(node)
-            f.sons.remove(node)
-
-    #   #
     # Operation on Graph 
     def addEdge(self, node, father):
         if father not in node.fathers:

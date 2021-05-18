@@ -63,13 +63,12 @@ def Learn(graph, dataset):
         time+=1
         print(time)
         print(current)
+        Visualizer.printdot(graph)
+        Visualizer.printpng()
         run = False
         vstruct = graph.VStruct()
         G = []
         S = []
-
-        Visualizer.printdot(graph)
-        Visualizer.printpng()
 
         #   #
         # Relevant Actions added to list graph->G , score->S
@@ -96,21 +95,6 @@ def Learn(graph, dataset):
                         S.append(Score(g3, dataset))
                         G.append(g3)
 
-        #       #       #       #       #       #       #       #   END FOR
-
-        #   #
-        # San Andreas Step
-        if random.randint(0, 100) < SAindex:
-            run = True
-            gSA = copy.deepcopy(graph)
-            if bool(random.getrandbits(1)):
-                gSA.invertEdgeSA()
-            else:
-                gSA.removeEdgeSA()
-
-            if not gSA.isCyclic():
-                graph = gSA
-
         #   #
         # Is there a better graph in G ? 
         if len(S) > 0:
@@ -123,3 +107,57 @@ def Learn(graph, dataset):
     #       #       #       #       #       #       #       à       #      END WHILE
 
     return [ graph , current ]
+
+def QuickLearn(graph, dataset):
+    graph.initDAG()
+    run = True
+    time = 0
+    while(run):
+        current = Score( graph , dataset)
+        time+=1
+        print(time)
+        print(current)
+        Visualizer.printdot(graph)
+        Visualizer.printpng()
+        run = False
+        vstruct = graph.VStruct()
+
+        catch = False
+        i = 0
+        while (not catch) and i <len(graph.nodes) :
+            j = i + 1
+            while (not catch) and j < len(graph.nodes) :
+                g1 = copy.deepcopy(graph)
+                g2 = copy.deepcopy(graph)
+                g3 = copy.deepcopy(graph)
+
+                g1.addEdge(g1.nodes[i], g1.nodes[j])
+                g2.removeEdge(g2.nodes[i], g2.nodes[j])
+                g3.invertEdge(g3.nodes[i], g3.nodes[j])
+
+                #   #
+                # the first graph to be a better one breaks the cycles
+                    
+                if g2.VStruct() != vstruct and not g2.isCyclic():
+                    if Score(g1,dataset) > current : 
+                        graph = g2
+                        run = True
+                        catch = True 
+                elif g1.VStruct() != vstruct and not g1.isCyclic():
+                    if Score(g1,dataset) > current : 
+                        graph = g1
+                        run = True
+                        catch = True
+                elif g3.VStruct() != vstruct and not g3.isCyclic():
+                    if Score(g1,dataset) > current : 
+                        graph = g3
+                        run = True
+                        catch = True 
+                j = j + 1
+            i = i + 1
+
+            
+    #       #       #       #       #       #       #       à       #      END WHILE
+
+    return [ graph , current ]
+
