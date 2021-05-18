@@ -53,7 +53,8 @@ def make_j(node):
 
 #   #
 # Search for local maximum and does some random choices
-def Learn(graph, dataset, SAindex):
+def Learn(graph, dataset):
+    graph.initDAG()
     current = Score( graph , dataset)
     score = 0
     run = True
@@ -122,19 +123,3 @@ def Learn(graph, dataset, SAindex):
     #       #       #       #       #       #       #       à       #      END WHILE
 
     return [ graph , current ]
-
-
-#   #
-# Calls Learn several times on random generated DAGs to find best Learning 
-def bestLearn(graph, dataset, SAindex, iter):
-    G = []
-    S = []
-    for i in range(iter):
-        g = copy.deepcopy(graph)
-        g.initDAG()
-        Visualizer.printdot(g)
-        Visualizer.printpng()
-        [gr, sc] = Learn(g, dataset, SAindex)
-        G.append(gr)
-        S.append(sc)
-    return G[S.index(max(S))]
