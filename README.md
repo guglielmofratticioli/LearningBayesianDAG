@@ -63,6 +63,8 @@ Learning.py ha come funzioni :
 
     la ricerca termina quando nessun grafico in G risulta migliore del corrente
 
+ - QuickLearn  -> è la variante veloce di Learn, non espande a priori tutti i grafi a distanza 1 , ma aggiorna il grafo con il primo miglior neighbour scoperto 
+
 
 
 ## TESTING
