@@ -63,11 +63,7 @@ Learning.py ha come funzioni :
 
     la ricerca termina quando nessun grafico in G risulta migliore del corrente
 
-- bestLearn -> ho aggiunto questa funzione per un bug
 
-    La ricerca si fermava  quasi subito  nel Learn **<span style = "color:red">(!! Possibile Funzione di scoringErrata !! )</span>**
-
-    Questa funzione chiama più volte _Learn()_ in modo da far partire più ricerche in DAG inizilizzati in modo diverso ... poi si seleziona il grafico migliore
 
 ## TESTING
 
@@ -82,9 +78,11 @@ in Earthquake.py
 - ho appreso il grafo basandomi sul dataset campionato ( EQGraph )
 
 .
+in AlarmTest.py
 
-## **<span style="color:red" >BUG RISCONTRATI</span>**
+- ho ricostruito il ModelloALM secondo [bnlearn](https://www.bnlearn.com/bnrepository/discrete-medium.html#alarmm)  ( buildALMGraph )
 
-1) Lo Score del grafico appreso in Earthquake.py è migliore dello Score del Modello vero nonostante abbia una struttura diversa
+- ho campionato secondo le tabelle del modello ALM ( ALMSampler )
 
-2) la funzione di Learn si ferma subito trovando sempre un Massimo locale al primo Step
+- ho appreso il grafo basandomi sul dataset campionato 
+
