@@ -1,4 +1,5 @@
 import itertools
+import mpmath
 import math
 import Dataset
 import random
@@ -28,9 +29,9 @@ def Score(graph, data):
         if len(node.fathers) != 0:
             j = make_j(node)
             for comb in j[0]:
-                score = score + math.log(math.gamma(alphaij(node, comb))) - math.log( math.gamma(alphaij(node, comb) + Dataset.Nij(data, node, [comb, j[1]])) )
+                score = score + math.log(mpmath.gamma(alphaij(node, comb))) - math.log( mpmath.gamma(alphaij(node, comb) + Dataset.Nij(data, node, [comb, j[1]])) )
                 for k in range(node.domine):
-                    score = score + math.log(math.gamma(alphaijk(node, comb, k) + Dataset.Nijk(data, node, [comb, j[1]], k)) - math.log(math.gamma(alphaijk(node, comb, k))))
+                    score = score + math.log(mpmath.gamma(alphaijk(node, comb, k) + Dataset.Nijk(data, node, [comb, j[1]], k)) - math.log(mpmath.gamma(alphaijk(node, comb, k))))
 
     return score    
 
