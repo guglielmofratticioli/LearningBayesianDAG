@@ -88,3 +88,8 @@ in AlarmTest.py
 
 - ho appreso il grafo basandomi sul dataset campionato 
 
+
+## How to run yourself 
+
+just run AlarmTest.py
+
