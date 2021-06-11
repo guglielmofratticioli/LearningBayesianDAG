@@ -100,6 +100,6 @@ Lanciare AlarmTest.py
  
  si può abilitare la chiamata a # printDot(graph) & printpng(graph) in Learn() se vogliamo visualizzare in /render/graph.png l'aggiornamento del grafo nel corso della ricerca
  
-**NB : ** nella funzione Score() in Lear.py Ho usato la libreria mpmath per le funzioni gamma, log perché math.gamma dava Overflow con >200 esempi. Potrebbe dare problemi di incompatibilità 
+**NB : nella funzione Score() in Learn.py Ho usato la libreria mpmath per le funzioni gamma, log perché math.gamma dava Overflow con >200 esempi. Potrebbe dare problemi di incompatibilità**
  
 
