@@ -118,8 +118,8 @@ def QuickLearn(graph, dataset):
         time+=1
         print(time)
         print(current)
-        Visualizer.printdot(graph)
-        Visualizer.printpng()
+        #Visualizer.printdot(graph)
+        #Visualizer.printpng()
         run = False
         vstruct = graph.VStruct()
 
