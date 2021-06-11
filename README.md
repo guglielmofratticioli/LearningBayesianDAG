@@ -91,5 +91,12 @@ in AlarmTest.py
 
 ## How to run yourself 
 
-just run AlarmTest.py
+Lanciare AlarmTest.py
+
+ - si può scegliere il numero di esempi del test assegnando la variabile NEXAMPLES
+ - si può optare per una ricerca più rapida abilitando la funzione # QuickLearn() ( sceglie la prima azione dal punteggio migliore ) 
+ 
+ Il tempo di esecuzione può variare dai 700s  con 200 examples , fino a >2 ore con 500 examples 
+ 
+ si può abilitare la chiamata a # printDot(graph) & printpng(graph) in Learn() se vogliamo visualizzare in /render/out.png l'aggiornamento del grafo nel corso della ricerca
 
