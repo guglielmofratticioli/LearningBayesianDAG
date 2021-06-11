@@ -98,5 +98,8 @@ Lanciare AlarmTest.py
  
  Il tempo di esecuzione può variare dai 700s  con 200 examples , fino a >2 ore con 500 examples 
  
- si può abilitare la chiamata a # printDot(graph) & printpng(graph) in Learn() se vogliamo visualizzare in /render/out.png l'aggiornamento del grafo nel corso della ricerca
+ si può abilitare la chiamata a # printDot(graph) & printpng(graph) in Learn() se vogliamo visualizzare in /render/graph.png l'aggiornamento del grafo nel corso della ricerca
+ 
+**NB : ** nella funzione Score() in Lear.py Ho usato la libreria mpmath per le funzioni gamma, log perché math.gamma dava Overflow con >200 esempi. Potrebbe dare problemi di incompatibilità 
+ 
 
