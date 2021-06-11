@@ -5,6 +5,10 @@ import random
 from Dataset import Dataset, Example
 from Learning import Score , Learn , QuickLearn
 
+# Impostare qui il numero di esempi da campionare 
+NEXAMPLES = 100
+
+#ENUM NODE DOMINES
 LOW2 = 0    
 NORMAL2 = 1
 NORMAL = 0
@@ -662,7 +666,7 @@ connectALMFathers(actual)
 graph = buildALMGraph()
 examples = [] 
 
-for i in range(100) : 
+for i in range(NEXAMPLES) : 
    e = ALMSampler(graph)
    examples.append(e)
    print(e.values)
